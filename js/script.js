@@ -35,8 +35,12 @@ FSJS project 2 - List Filter and Pagination
        that will be passed into the parens later when you call or 
        "invoke" the function 
 ***/
-   //Show page function that takes the student list and the page number to display
-   //If no students are displayed, it will display a message stating there are no results found
+   /**
+ * Show page function that takes the student list and the page number to display
+ *
+ * @param {[Collection of HTML Elements]} list - [A list of students to be displayed]
+ * @param {[Number]} page - [The page number]
+ */
    function showPage(list, page){
       const startIndex = (page * numOfItemsToDisplay) - numOfItemsToDisplay;
       const endIndex = page * numOfItemsToDisplay;   
@@ -58,16 +62,18 @@ FSJS project 2 - List Filter and Pagination
       }
    }
    
-/*** 
-   Create the `appendPageLinks function` to generate, append, and add 
-   functionality to the pagination buttons.
-***/
-//Function that appends pagination links based on the length of list
+
+/**
+ *Creates and appends pagination links based on the length of list
+ *
+ * @param {Collection of HTML elements} list - List of students.
+ */
 function appendPageLinks(list){
    const page = document.querySelector(".page");
    const neededPages = Math.ceil(list.length / numOfItemsToDisplay);
    const paginationDiv = document.createElement("div");
    const paginationUl = document.createElement("ul");
+   
    //If the pagination links do not exist yet create them
    if(document.querySelector(".pagination") == null){
       paginationDiv.appendChild(paginationUl);
@@ -84,6 +90,7 @@ function appendPageLinks(list){
 
    const div = document.querySelector(".pagination");
    const ul = div.firstElementChild;
+   
    //Creates and appends the needed amount of pagination links
    for(let i = 1; i <= neededPages; i++){
       const li = document.createElement("li");
@@ -100,6 +107,7 @@ function appendPageLinks(list){
    }
    
    const paginationLink = document.querySelectorAll(".pagination a");
+   
    //Adds an event listener to all pagination links
    for(let i =0; i< paginationLink.length; i++){
    paginationLink[i].addEventListener("click", (e) =>{
@@ -115,7 +123,12 @@ function appendPageLinks(list){
    });
 }
 }
-//Function that takes the list of students and creates a search functionality to search for a specified student name
+
+/**
+ *Takes the list of students and creates a search functionality to search for a specified student name
+ *
+ * @param {Collection of HTML Elements} List - List of students.
+ */
 function searchStudents (list){
    //Create search HTML
    const searchDiv = document.createElement("div");
